@@ -37,7 +37,7 @@ func GetLatestMessage() *linebot.FlexMessage {
 				&linebot.ButtonComponent{
 					Action: &linebot.MessageAction{
 						Label: "點此觀看各縣市剩餘劑量",
-						Text:  "/vaccineInventories",
+						Text:  "/inventories",
 					},
 				},
 			},
