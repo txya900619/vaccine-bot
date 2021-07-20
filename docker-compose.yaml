@@ -17,6 +17,10 @@ services:
   vaccine-bot:
     image: wayne900619/vaccine-bot:latest
     depends_on: [caddy]
+    environment:
+      - CHANNEL_SECRET
+      - CHANNEL_TOKEN
+      - PORT
     networks:
       - caddy
     labels:
@@ -25,7 +29,7 @@ services:
 
 networks:
   caddy:
-    external: true
+    name: caddy
 
 volumes:
   caddy_data: {}
