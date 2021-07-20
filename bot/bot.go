@@ -36,9 +36,9 @@ func (bot *VaccineBot) GetCallbackHandler() http.HandlerFunc {
 
 		for _, event := range events {
 			if event.Type == linebot.EventTypeMessage {
-				var replyMessage linebot.SendingMessage = messages.GetDefaultMessage()
 				switch message := event.Message.(type) {
 				case *linebot.TextMessage:
+					var replyMessage linebot.SendingMessage = messages.GetDefaultMessage()
 					switch message.Text {
 					case "/help":
 						replyMessage = messages.GetHelpMessage()
@@ -47,12 +47,14 @@ func (bot *VaccineBot) GetCallbackHandler() http.HandlerFunc {
 					case "/inventories":
 						replyMessage = messages.GetInventoriesMessage()
 					}
+
+					reply := bot.ReplyMessage(event.ReplyToken, replyMessage)
+					_, err = reply.Do()
+					if err != nil {
+						log.Fatal(err)
+					}
 				}
-				reply := bot.ReplyMessage(event.ReplyToken, replyMessage)
-				_, err = reply.Do()
-				if err != nil {
-					log.Fatal(err)
-				}
+
 			}
 		}
 
