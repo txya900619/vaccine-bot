@@ -38,7 +38,7 @@ func (bot *VaccineBot) GetCallbackHandler() http.HandlerFunc {
 			if event.Type == linebot.EventTypeMessage {
 				switch message := event.Message.(type) {
 				case *linebot.TextMessage:
-					var replyMessage linebot.SendingMessage = messages.GetDefaultMessage()
+					var replyMessage linebot.SendingMessage
 					switch message.Text {
 					case "/help":
 						replyMessage = messages.GetHelpMessage()
@@ -46,6 +46,8 @@ func (bot *VaccineBot) GetCallbackHandler() http.HandlerFunc {
 						replyMessage = messages.GetLatestMessage()
 					case "/inventories":
 						replyMessage = messages.GetInventoriesMessage()
+					default:
+						replyMessage = messages.GetDefaultMessage()
 					}
 
 					reply := bot.ReplyMessage(event.ReplyToken, replyMessage)
