@@ -73,7 +73,10 @@ func UpdateVaccineData() {
 			return
 		}
 
-		ioutil.WriteFile("vaccine-data.json", vaccineDataJSON, 0644)
+		err = ioutil.WriteFile("vaccine-data.json", vaccineDataJSON, 0644)
+		if err != nil {
+			log.Fatal(err)
+		}
 	})
 
 	err := c.Visit("https://www.cdc.gov.tw/Category/Page/9jFXNbCe-sFK9EImRRi2Og")

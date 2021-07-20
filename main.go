@@ -13,7 +13,10 @@ import (
 func main() {
 	crawler.UpdateVaccineData()
 	crontab := cron.New(cron.WithLogger(cron.DefaultLogger))
-	crontab.AddFunc("@hourly", crawler.UpdateVaccineData)
+	_, err := crontab.AddFunc("@hourly", crawler.UpdateVaccineData)
+	if err != nil {
+		log.Fatal(err)
+	}
 
 	bot, err := bot.New()
 	if err != nil {
