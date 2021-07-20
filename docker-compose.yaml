@@ -16,9 +16,12 @@ services:
   
   vaccine-bot:
     image: wayne900619/vaccine-bot:latest
-    depends_on: caddy
-    caddy: bot.txya.tk
-    caddy.reverse_proxy: {{upstreams}}
+    depends_on: [caddy]
+    networks:
+      - caddy
+    labels:
+      caddy: bot.txya.tk
+      caddy.reverse_proxy: "{{upstreams https}}"
 
 networks:
   caddy:
