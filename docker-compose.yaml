@@ -25,7 +25,7 @@ services:
       - caddy
     labels:
       caddy: bot.txya.tk
-      caddy.reverse_proxy: "{{upstreams https}}"
+      caddy.reverse_proxy: "{{upstreams 443}}"
 
 networks:
   caddy:
