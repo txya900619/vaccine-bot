@@ -24,6 +24,7 @@ func GetInventoriesMessage() *linebot.FlexMessage {
 	return linebot.NewFlexMessage("vaccine inventories info", &linebot.BubbleContainer{
 		Size: linebot.FlexBubbleSizeTypeGiga,
 		Body: &linebot.BoxComponent{
+			Layout:   linebot.FlexBoxLayoutTypeVertical,
 			Contents: vaccineInventoriesBoxes,
 		},
 	})

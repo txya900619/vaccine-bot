@@ -5,6 +5,7 @@ import "github.com/line/line-bot-sdk-go/v7/linebot"
 func GetHelpMessage() *linebot.FlexMessage {
 	return linebot.NewFlexMessage("help message", &linebot.BubbleContainer{
 		Body: &linebot.BoxComponent{
+			Layout: linebot.FlexBoxLayoutTypeVertical,
 			Contents: []linebot.FlexComponent{
 				&linebot.TextComponent{
 					Size: linebot.FlexTextSizeTypeSm,
