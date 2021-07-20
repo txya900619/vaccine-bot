@@ -28,7 +28,7 @@ jobs:
       - name: publish image to docker hub
         uses: elgohr/Publish-Docker-Github-Action@2.22
         with:
-          name: wayne900619/mr.coding-linebot
+          name: wayne900619/vaccine-bot
           username: wayne900619
           password: ${{ secrets.docker_password }}
           dockerfile: Dockerfile
