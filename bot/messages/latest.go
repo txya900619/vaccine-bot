@@ -31,9 +31,9 @@ func GetLatestMessage() *linebot.FlexMessage {
 				},
 				centalBoldText("累計接種 ", vaccineData.TotalVaccination.Total, " 人次，"),
 				centalBoldText("其中 AZ 佔 ", vaccineData.TotalVaccination.AstraZeneca, " 人次，"),
-				centalBoldText("莫德納佔 ", vaccineData.TotalVaccination.Total, " 人次，"),
+				centalBoldText("莫德納佔 ", vaccineData.TotalVaccination.Moderna, " 人次，"),
 				centalBoldText("接種人口覆蓋率 ", vaccineData.PopulationCoverage+"%", ","),
-				centalBoldText("劑次人口比 ", vaccineData.DailyVaccination.Total, " (劑 /每百人 )。"),
+				centalBoldText("劑次人口比 ", vaccineData.DosagePopulationRatio, " (劑 /每百人 )。"),
 				&linebot.ButtonComponent{
 					Action: &linebot.MessageAction{
 						Label: "點此觀看各縣市剩餘劑量",
