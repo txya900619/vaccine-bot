@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"net/http"
 	"os"
@@ -12,8 +13,11 @@ import (
 
 func main() {
 	crawler.UpdateVaccineData()
-	crontab := cron.New(cron.WithLogger(cron.DefaultLogger))
-	_, err := crontab.AddFunc("@hourly", crawler.UpdateVaccineData)
+	crontab := cron.New()
+	_, err := crontab.AddFunc("@hourly", func() {
+		fmt.Println("crawing")
+		crawler.UpdateVaccineData()
+	})
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -26,7 +30,6 @@ func main() {
 	http.HandleFunc("/callback", bot.GetCallbackHandler())
 
 	crontab.Start()
-	defer crontab.Stop()
 
 	if err := http.ListenAndServe(":"+os.Getenv("PORT"), nil); err != nil {
 		log.Fatal(err)
